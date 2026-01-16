@@ -1448,7 +1448,7 @@ def add(a: float, b: float) -> str:
         a: First number
         b: Second number
     """
-    result = a + b
+                result = a + b
     return f"✅ {a} + {b} = {result}"
 
 @mcp.tool()
@@ -1459,7 +1459,7 @@ def subtract(a: float, b: float) -> str:
         a: First number
         b: Second number to subtract
     """
-    result = a - b
+                result = a - b
     return f"✅ {a} - {b} = {result}"
 
 @mcp.tool()
@@ -1470,7 +1470,7 @@ def multiply(a: float, b: float) -> str:
         a: First number
         b: Second number
     """
-    result = a * b
+                result = a * b
     return f"✅ {a} × {b} = {result}"
 
 @mcp.tool()
@@ -1481,9 +1481,9 @@ def divide(a: float, b: float) -> str:
         a: Dividend (number to divide)
         b: Divisor (number to divide by)
     """
-    if b == 0:
+                if b == 0:
         return "❌ Error: Division by zero"
-    result = a / b
+                result = a / b
     return f"✅ {a} ÷ {b} = {result}"
 
 @mcp.tool()

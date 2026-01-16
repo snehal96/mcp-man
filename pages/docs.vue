@@ -4,9 +4,7 @@
     <header class="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl">
       <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <NuxtLink to="/" class="flex items-center gap-3 group">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-lg font-bold shadow-lg shadow-violet-500/25 group-hover:shadow-violet-500/40 transition-all duration-300">
-            ⚡
-          </div>
+          <img src="/logo.png" alt="MCP Playground" class="w-9 h-9 object-contain" />
           <span class="text-lg font-bold tracking-tight text-white group-hover:text-violet-300 transition-colors">MCP Playground</span>
         </NuxtLink>
         

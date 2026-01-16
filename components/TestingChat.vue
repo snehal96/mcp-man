@@ -75,7 +75,7 @@
                     <div v-if="call.result" class="text-xs text-gray-500 pt-2 border-t border-white/5">
                       <span class="font-medium">Output:</span>
                       <pre class="mt-1 text-emerald-400 font-mono">{{ call.result }}</pre>
-                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -118,10 +118,10 @@
       <div v-else class="flex gap-3">
         <div class="flex-1 relative">
           <textarea
-            v-model="userInput"
-            placeholder="Ask the AI to use your MCP tools... (e.g., 'Greet John')"
-            :rows="2"
-            :disabled="isThinking"
+          v-model="userInput"
+          placeholder="Ask the AI to use your MCP tools... (e.g., 'Greet John')"
+          :rows="2"
+          :disabled="isThinking"
             @keydown.enter.exact.prevent="sendMessage"
             class="w-full px-4 py-3 bg-white/[0.02] border border-white/10 rounded-xl text-white placeholder-gray-500 text-sm resize-none focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all"
           ></textarea>
@@ -373,19 +373,19 @@ async function sendMessage() {
     
     if (parsedTool) {
       const result = executeMockTool(parsedTool.toolName, parsedTool.args)
-      
-      const toolCall = {
+        
+        const toolCall = {
         name: parsedTool.toolName,
         args: parsedTool.args,
-        result,
-      }
-      
-      messages.value.push({
-        role: 'assistant',
+          result,
+        }
+        
+        messages.value.push({
+          role: 'assistant',
         content: parsedTool.description,
-        toolCalls: [toolCall],
-      })
-      
+          toolCalls: [toolCall],
+        })
+        
       emit('execute-tool', parsedTool.toolName, parsedTool.args)
     } else {
       // Provide helpful guidance based on available tools

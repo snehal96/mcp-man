@@ -12,9 +12,7 @@
       <div class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-xl font-bold shadow-lg shadow-violet-500/25">
-              ⚡
-            </div>
+            <img src="/logo.png" alt="MCP Playground" class="w-10 h-10 object-contain" />
             <span class="text-xl font-bold tracking-tight">MCP Playground</span>
           </NuxtLink>
           

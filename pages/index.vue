@@ -370,18 +370,32 @@ server = Server(<span class="text-emerald-400">"weather-server"</span>)
                 </NuxtLink>
               </li>
               <li>
-                <a href="https://github.com/modelcontextprotocol/servers" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                  Example Servers
-                </a>
+                <NuxtLink to="/docs" class="text-gray-400 hover:text-white transition-colors">
+                  Documentation
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/contact" class="text-gray-400 hover:text-white transition-colors">
+                  Contact Us
+                </NuxtLink>
               </li>
             </ul>
           </div>
         </div>
 
         <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p class="text-gray-500 text-sm">
-            Built with ❤️ for the MCP community
-          </p>
+          <div class="flex items-center gap-6">
+            <p class="text-gray-500 text-sm">
+              Built with ❤️ for the MCP community
+            </p>
+            <span class="text-gray-700">•</span>
+            <NuxtLink to="/privacy" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+              Privacy
+            </NuxtLink>
+            <NuxtLink to="/terms" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+              Terms
+            </NuxtLink>
+          </div>
           <div class="flex items-center gap-4">
             <a 
               href="https://github.com/modelcontextprotocol" 

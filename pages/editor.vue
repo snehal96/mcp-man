@@ -229,18 +229,27 @@
             />
           </div>
 
+          <!-- AI Chat Tab (Mock LLM Testing) -->
+          <div v-show="activeTab === 1" class="h-full">
+            <MockLLMChat
+              :server-running="isServerRunning"
+              :tools="availableTools"
+              :call-tool="callTool"
+            />
+          </div>
+
           <!-- Tools Inspector Tab -->
-          <div v-show="activeTab === 1" class="h-full overflow-auto p-6">
+          <div v-show="activeTab === 2" class="h-full overflow-auto p-6">
             <ToolsInspector :tools="availableTools" />
           </div>
 
           <!-- Console Tab -->
-          <div v-show="activeTab === 2" class="h-full overflow-auto">
+          <div v-show="activeTab === 3" class="h-full overflow-auto">
             <ConsoleOutput :logs="consoleLogs" />
           </div>
 
           <!-- Docs Tab -->
-          <div v-show="activeTab === 3" class="h-full overflow-auto p-6">
+          <div v-show="activeTab === 4" class="h-full overflow-auto p-6">
             <DocsPanel />
           </div>
         </div>
@@ -411,6 +420,7 @@ const {
   startServer, 
   stopServer, 
   clearLogs,
+  callTool,
   isLoading: mcpLoading,
   isRunning: isServerRunning,
   tools: availableTools,
@@ -474,9 +484,10 @@ const totalItems = computed(() => availableTools.value.length + availableResourc
 
 const tabs = computed(() => [
   { label: 'Test', icon: 'i-heroicons-play-circle', value: 0, badge: totalItems.value > 0 ? String(totalItems.value) : undefined },
-  { label: 'Tools', icon: 'i-heroicons-wrench-screwdriver', value: 1 },
-  { label: 'Console', icon: 'i-heroicons-command-line', value: 2, badge: consoleLogs.value.length > 0 ? String(consoleLogs.value.length) : undefined },
-  { label: 'Docs', icon: 'i-heroicons-book-open', value: 3 },
+  { label: 'AI Chat', icon: 'i-heroicons-sparkles', value: 1 },
+  { label: 'Tools', icon: 'i-heroicons-wrench-screwdriver', value: 2 },
+  { label: 'Console', icon: 'i-heroicons-command-line', value: 3, badge: consoleLogs.value.length > 0 ? String(consoleLogs.value.length) : undefined },
+  { label: 'Docs', icon: 'i-heroicons-book-open', value: 4 },
 ])
 
 const editorOptions = {
@@ -499,8 +510,38 @@ const codeSize = computed(() => {
   return bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} KB`
 })
 
+// Decode code from URL-safe base64
+function decodeCode(encoded: string): string {
+  try {
+    // Restore standard base64
+    let base64 = encoded.replace(/-/g, '+').replace(/_/g, '/')
+    // Add padding if needed
+    while (base64.length % 4) {
+      base64 += '='
+    }
+    return decodeURIComponent(escape(atob(base64)))
+  } catch {
+    return ''
+  }
+}
+
 // Load initial template and show guide
 onMounted(() => {
+  // Check for shared code in URL
+  const params = new URLSearchParams(window.location.search)
+  const sharedCode = params.get('code')
+  
+  if (sharedCode) {
+    const decoded = decodeCode(sharedCode)
+    if (decoded) {
+      code.value = decoded
+      selectedTemplate.value = 'custom'
+      // Clean URL without reload
+      window.history.replaceState({}, '', window.location.pathname)
+      return
+    }
+  }
+  
   loadTemplate(selectedTemplate.value)
   
   const hasSeenGuide = localStorage.getItem('mcp-playground-seen-guide')

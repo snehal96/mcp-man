@@ -278,7 +278,7 @@ const browserInfo = computed(() => {
 const FORMSPREE_ENDPOINT = '' // e.g., 'https://formspree.io/f/your-form-id'
 
 // Option 2: Google Sheets via Apps Script - Replace with your deployment URL
-const GOOGLE_SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxQ_pH8WzCV3akPZ9a7LhX_uTQPHZP70ZNX4Mj3q4uiGGsyKY-Q3NJqHd1N7NvYHN0t/exec' // e.g., 'https://script.google.com/macros/s/your-script-id/exec'
+const GOOGLE_SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx5a-aPzfIpqXsvoOjs6zg8rAjn5GlgKjfaL5k8XjhkABVHtnFM8yw9AD-OFGovxNtO/exec' // e.g., 'https://script.google.com/macros/s/your-script-id/exec'
 
 async function submitForm() {
   isSubmitting.value = true
@@ -306,15 +306,22 @@ async function submitForm() {
       if (!response.ok) throw new Error('Form submission failed')
       submitted.value = true
     }
-    // Try Google Sheets
+    // Try Google Sheets (using URL params which work reliably with Apps Script)
     else if (GOOGLE_SHEETS_ENDPOINT) {
-      const response = await fetch(GOOGLE_SHEETS_ENDPOINT, {
-        method: 'POST',
-        mode: 'no-cors', // Google Apps Script requires this
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
+      const params = new URLSearchParams()
+      params.append('type', payload.type || '')
+      params.append('name', payload.name || '')
+      params.append('email', payload.email || '')
+      params.append('subject', payload.subject || '')
+      params.append('message', payload.message || '')
+      params.append('timestamp', payload.timestamp || '')
+      params.append('browserInfo', payload.browserInfo || '')
+      params.append('url', payload.url || '')
+      
+      // GET request with URL params works reliably with Google Apps Script
+      await fetch(`${GOOGLE_SHEETS_ENDPOINT}?${params.toString()}`, {
+        method: 'GET',
+        mode: 'no-cors'
       })
       
       // no-cors mode doesn't return response, so we assume success

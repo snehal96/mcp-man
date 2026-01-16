@@ -1,5 +1,8 @@
 <template>
   <div class="min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden">
+    <!-- GitHub Corner -->
+    <GitHubCorner repo-url="https://github.com/snehal96/mcp-man" />
+    
     <!-- Animated Background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
       <div class="absolute top-0 left-1/4 w-96 h-96 bg-violet-600/20 rounded-full blur-[128px] animate-pulse"></div>
@@ -15,9 +18,7 @@
       <div class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-xl font-bold shadow-lg shadow-violet-500/25">
-              ⚡
-            </div>
+            <img src="/logo.png" alt="MCP Playground" class="w-10 h-10 object-contain" />
             <span class="text-xl font-bold tracking-tight">MCP Playground</span>
             <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 text-violet-300 rounded-full border border-violet-500/30">
               Beta
@@ -327,9 +328,7 @@ server = Server(<span class="text-emerald-400">"weather-server"</span>)
           <!-- Brand -->
           <div class="md:col-span-2">
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-sm font-bold">
-                ⚡
-              </div>
+              <img src="/logo.png" alt="MCP Playground" class="w-8 h-8 object-contain" />
               <span class="text-lg font-bold">MCP Playground</span>
             </div>
             <p class="text-gray-400 text-sm max-w-md">

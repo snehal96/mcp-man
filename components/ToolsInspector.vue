@@ -30,7 +30,7 @@
               <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                 <span class="text-lg">⚡</span>
               </div>
-              <div>
+            <div>
                 <h3 class="text-base font-semibold text-white font-mono">{{ tool.name }}</h3>
                 <p class="text-sm text-gray-400 mt-0.5">{{ tool.description }}</p>
               </div>

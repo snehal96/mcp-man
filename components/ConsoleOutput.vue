@@ -52,7 +52,7 @@
             {
               'text-cyan-400': log.type === 'info',
               'text-emerald-400': log.type === 'success',
-              'text-red-400': log.type === 'error',
+            'text-red-400': log.type === 'error',
               'text-amber-400': log.type === 'warning',
               'text-gray-500': log.type === 'log',
             }
@@ -68,9 +68,9 @@
 
 <script setup lang="ts">
 interface LogEntry {
-  type: 'info' | 'success' | 'error' | 'warning' | 'log'
-  message: string
-  timestamp: string
+    type: 'info' | 'success' | 'error' | 'warning' | 'log'
+    message: string
+    timestamp: string
 }
 
 defineProps<{
